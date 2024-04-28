@@ -11,10 +11,12 @@ cache = '/runpod-volume'
 os.environ['TRANSFORMERS_CACHE'] = cache
 os.environ['HF_HOME'] = cache
 
+device = torch.device('cuda')
+
 tokenizer = AutoTokenizer.from_pretrained('Salesforce/SFR-Embedding-Mistral')
 model = AutoModel.from_pretrained('Salesforce/SFR-Embedding-Mistral')
 max_length = 32768
-
+model.to(device)
 
 def get_detailed_instruct(task: str, query: str) -> str:
     return f'Instruct: {task}\nQuery: {query}'
