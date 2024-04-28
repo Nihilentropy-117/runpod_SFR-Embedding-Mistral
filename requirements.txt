@@ -1,3 +1,4 @@
 runpod>=1.6.2
 transformers>=4.38.2
 numpy>=1.26.3
+sentence_transformers>=2.7.0
