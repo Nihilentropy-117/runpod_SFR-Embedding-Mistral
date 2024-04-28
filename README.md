@@ -43,7 +43,7 @@ The function returns embeddings as an array of floats:
 {"embeddings": [0.0004922622465528548, ..., 0.0035579828545451164]}
 ```
 ### Notes
-On a 24GB serverless instance, it takes about 60 seconds to cold boot, then it can generate embeddings in no time as long as you don't let it time out.
+On a 48GB serverless instance, it takes about 5 minutes to first boot, 60 seconds to cold boot, then it can generate embeddings in no time as long as you don't let it time out.
 
 ## Authors
 
