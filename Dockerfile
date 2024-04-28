@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Pre-download the model to the image
-RUN python -c "from transformers import AutoModel; model = AutoModel.from_pretrained('Salesforce/SFR-Embedding-Mistral')"
+# RUN python -c "from transformers import AutoModel; model = AutoModel.from_pretrained('Salesforce/SFR-Embedding-Mistral')"
 
 
 # Copy the handler script

@@ -5,7 +5,12 @@ import torch.nn.functional as F
 from torch import Tensor
 from transformers import AutoTokenizer, AutoModel
 
-device = "cpu"
+import os
+
+cache = '/runpod-volume'
+os.environ['TRANSFORMERS_CACHE'] = cache
+os.environ['HF_HOME'] = cache
+
 tokenizer = AutoTokenizer.from_pretrained('Salesforce/SFR-Embedding-Mistral')
 model = AutoModel.from_pretrained('Salesforce/SFR-Embedding-Mistral')
 max_length = 32768
@@ -35,6 +40,7 @@ def query_embeddings(text, task):
         embeddings = F.normalize(embeddings, p=2, dim=1)
         return embeddings.squeeze().numpy().tolist()
 
+
 def passage_embeddings(text):
     with torch.no_grad():
         passages = [text]
@@ -43,17 +49,20 @@ def passage_embeddings(text):
         embeddings1 = last_token_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
         embeddings = F.normalize(embeddings1, p=2, dim=1)
         return embeddings.squeeze().numpy().tolist()
+
+
 def handler(job):
     response = {}
-    job_input = json.loads(job["input"]["data"])
-    task = job_input.get('task')
+    job_input = job["input"]["data"]
+    if isinstance(job_input, str):
+        job_input = json.loads(job_input)
 
+    task = job_input.get('task')
     text = job_input.get('text')
 
     if task == 'query':
         task_description = job_input.get('task_description')
         response["embeddings"] = query_embeddings(task_description, text)
-
     else:
         response["embeddings"] = passage_embeddings(text)
 
@@ -61,3 +70,4 @@ def handler(job):
 
 # Start the serverless function
 runpod.serverless.start({"handler": handler})
+
