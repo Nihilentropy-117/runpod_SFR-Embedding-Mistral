@@ -1,0 +1,2 @@
+runpod~=1.6.2
+transformers~=4.38.2
