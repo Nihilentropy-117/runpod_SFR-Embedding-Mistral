@@ -8,10 +8,7 @@ Generates embeddings for both queries and passages
 
 ## RunPod Deployment Template
 
-To deploy this model on RunPod, you can use the template directly:
-- **Template Name**: `nihilentropy_sfr-embedding-mistral`
-
-Alternatively, configure a serverless instance manually:
+To deploy this model on RunPod, you can configure a serverless instance:
 - **Minimum Requirements**: At least 24GB VRAM and a network-attached volume of at least 30GB.
 - **Estimated Cost**: Approximately $2.25/month for storage cache, plus usage time
 - **Environment Setup**:
