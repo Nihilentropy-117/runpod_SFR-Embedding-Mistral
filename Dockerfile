@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Pre-download the model to the image
+# Pre-download the model to the image, saves having to use the network drive, but is less performant for no real monetary gain
 # RUN python -c "from transformers import AutoModel; model = AutoModel.from_pretrained('Salesforce/SFR-Embedding-Mistral')"
 
 
