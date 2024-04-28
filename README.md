@@ -9,7 +9,7 @@ Generates embeddings for both queries and passages
 ## RunPod Deployment Template
 
 To deploy this model on RunPod, you can configure a serverless instance:
-- **Minimum Requirements**: At least 24GB VRAM and a network-attached volume of at least 30GB.
+- **Minimum Requirements**: At least 32GB VRAM and a network-attached volume of at least 30GB.
 - **Estimated Cost**: Approximately $2.25/month for storage cache, plus usage time
 - **Environment Setup**:
   - Set the environmental variable: `HF_HOME=/runpod-volume`.
@@ -43,7 +43,7 @@ The function returns embeddings as an array of floats:
 {"embeddings": [0.0004922622465528548, ..., 0.0035579828545451164]}
 ```
 ### Notes
-On a 24GB serverless instance, it takes about 60 seconds to cold boot, then it can generate embeddings in no time as long as you don't let it time out.
+On a 48GB serverless instance, it takes about 5 minutes to first boot, 60 seconds to cold boot, then it can generate embeddings in no time as long as you don't let it time out.
 
 ## Authors
 
